@@ -6,4 +6,8 @@
         <Nullable>enable</Nullable>
     </PropertyGroup>
 
+    <ItemGroup>
+      <ProjectReference Include="..\Pimpochki.Application\Pimpochki.Application.csproj" />
+    </ItemGroup>
+
 </Project>
