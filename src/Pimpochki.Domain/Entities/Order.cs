@@ -16,8 +16,8 @@ namespace Pimpochki.Domain.Entities
 
         public int UserId { get; set; }
 
-        public Product Product { get; set; }
+        public Product Product { get; set; } = null!;
 
-        public User User { get; set; }
+        public User User { get; set; } = null!;
     }
 }

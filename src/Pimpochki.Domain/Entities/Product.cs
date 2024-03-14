@@ -18,6 +18,8 @@ namespace Pimpochki.Domain.Entities
 
         public ICollection<Image> Images { get; } = new List<Image>();
 
-        public ICollection<Order> Orders { get; set; }
+        public ICollection<Order> Orders { get;} = new List<Order>();
+
+        
     }
 }
