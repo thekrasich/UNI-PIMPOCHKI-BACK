@@ -1,0 +1,42 @@
+version: '3.8'
+
+services:
+  mssql:
+    platform: linux/amd64
+    image: mcr.microsoft.com/mssql/server:2022-latest
+    user: root
+    container_name: pimpochki-mssql
+    environment:
+      ACCEPT_EULA: "Y"
+      SA_PASSWORD: "Password123"
+      MSSQL_PID: "Developer"
+      MSSQL_TCP_PORT: 1433
+      MSSQL_IP_ADDRESS: "0.0.0.0"
+      MSSQL_BACKUP_DIR: "/var/opt/mssql/backup"
+      MSSQL_DATA_DIR: "/var/opt/mssql/data"
+      MSSQL_LOG_DIR: "/var/opt/mssql/log"
+    ports:
+      - "1433:1433"
+    volumes:
+      - pimpochki-mssql-data:/var/opt/mssql/data
+      - pimpochki-mssql-backup:/var/opt/mssql/backup
+      - pimpochki-mssql-log:/var/opt/mssql/log
+    networks:
+      - pimpochki-mssql-network
+    restart: unless-stopped
+
+volumes:
+  pimpochki-mssql-data:
+    driver: local
+    name: pimpochki-mssql-data
+  pimpochki-mssql-backup:
+    driver: local
+    name: pimpochki-mssql-backup
+  pimpochki-mssql-log:
+    driver: local
+    name:  pimpochki-mssql-log
+
+networks:
+  pimpochki-mssql-network:
+    name: pimpochki-mssql-network
+    driver: bridge
