@@ -1,7 +1,11 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Pimpochki.Application.Persistence.EntityRepositories;
+using Pimpochki.Application.Persistence.EntityRepositories.Common;
 using Pimpochki.Infrastructure.Persistence;
+using Pimpochki.Infrastructure.Persistence.EntityRepositories;
+using Pimpochki.Infrastructure.Persistence.EntityRepositories.Common;
 
 namespace Pimpochki.Infrastructure;
 
@@ -12,6 +16,12 @@ public static class DependencyInjection
         services.AddDbContext<PimpochkiDbContext>(options => {
             options.UseSqlServer(configuration.GetConnectionString("Database"));
         });
+        services.AddScoped(typeof(IEntityRepository<>), typeof(EntityRepository<>));
+        services.AddScoped<IImageRepository,ImageRepository>();
+        services.AddScoped<IOrderRepository,OrderRepository>();
+        services.AddScoped<IProductRepository,ProductRepository>();
+        services.AddScoped<IRoleRepository,RoleRepository>();
+        services.AddScoped<IUserRepository,UserRepository>();
         return services;
     }
 }
