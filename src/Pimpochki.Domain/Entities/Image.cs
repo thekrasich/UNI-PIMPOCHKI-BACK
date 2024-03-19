@@ -8,7 +8,7 @@ namespace Pimpochki.Domain.Entities
 {
     public class Image:EntityBase
     {
-        public string Url { get; set; }
+        public string Url { get; set; } = null!;
 
         public int ProductId { get; set; }
 
