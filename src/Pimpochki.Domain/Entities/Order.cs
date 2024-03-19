@@ -8,7 +8,7 @@ namespace Pimpochki.Domain.Entities
 {
     public class Order:EntityBase
     {
-        public DateTime DateTime { get; set; }
+        public DateTime DateTime { get; set; } = DateTime.Now;
 
         public int Quantity { get; set; }
 

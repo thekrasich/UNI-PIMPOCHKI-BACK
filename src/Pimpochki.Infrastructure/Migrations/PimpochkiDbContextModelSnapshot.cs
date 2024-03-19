@@ -41,7 +41,7 @@ namespace Pimpochki.Infrastructure.Migrations
 
                     b.HasIndex("ProductId");
 
-                    b.ToTable("Images");
+                    b.ToTable("Images", (string)null);
                 });
 
             modelBuilder.Entity("Pimpochki.Domain.Entities.Order", b =>
@@ -70,7 +70,7 @@ namespace Pimpochki.Infrastructure.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("Orders");
+                    b.ToTable("Orders", (string)null);
                 });
 
             modelBuilder.Entity("Pimpochki.Domain.Entities.Product", b =>
@@ -97,7 +97,7 @@ namespace Pimpochki.Infrastructure.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Products");
+                    b.ToTable("Products", (string)null);
                 });
 
             modelBuilder.Entity("Pimpochki.Domain.Entities.Role", b =>
@@ -114,7 +114,7 @@ namespace Pimpochki.Infrastructure.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Roles");
+                    b.ToTable("Roles", (string)null);
                 });
 
             modelBuilder.Entity("Pimpochki.Domain.Entities.User", b =>
@@ -144,7 +144,7 @@ namespace Pimpochki.Infrastructure.Migrations
 
                     b.HasIndex("RoleId");
 
-                    b.ToTable("Users");
+                    b.ToTable("Users", (string)null);
                 });
 
             modelBuilder.Entity("Pimpochki.Domain.Entities.Image", b =>
