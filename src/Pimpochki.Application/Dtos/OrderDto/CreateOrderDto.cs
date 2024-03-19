@@ -7,14 +7,13 @@ using System.Runtime.CompilerServices;
 
 namespace Pimpochki.Application.Dtos
 {
-    public class OrderDto
+
+    public class CreateOrderDto
     {
         public DateTime DateTime { get; set; }
-        
-        public int ProductId { get; set; }
 
-        public int UserId { get; set; }
-
+        [Required, Range(1, int.MaxValue)]
         public int Quantity { get; set; }
+
     }
 }

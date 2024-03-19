@@ -7,14 +7,11 @@ using System.Runtime.CompilerServices;
 
 namespace Pimpochki.Application.Dtos
 {
-    public class OrderDto
+
+    public class CreateImageDto
     {
-        public DateTime DateTime { get; set; }
-        
-        public int ProductId { get; set; }
-
-        public int UserId { get; set; }
-
-        public int Quantity { get; set; }
+         [Required, Url] 
+        public string Url { get; set; } = null!;
     }
+
 }

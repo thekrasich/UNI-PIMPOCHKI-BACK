@@ -14,14 +14,4 @@ namespace Pimpochki.Application.Dtos
         public int ProductId { get; set; }
     }
 
-    public class CreateImageDto
-    {
-         [Required, Url] 
-        public string Url { get; set; } = null!;
-    }
-    public class UpdateImageDto
-    {
-        [Required, Url] 
-        public string Url { get; set; } = null!;
-    }
 }

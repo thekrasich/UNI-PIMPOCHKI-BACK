@@ -6,14 +6,17 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Pimpochki.Application.Dtos
 {
-    public class UserDto
-    {
 
+    public class CreateUserDto
+    {
+        [Required, MaxLength(100)] 
         public string UserName { get; set; } = null!;
 
+        [Required, EmailAddress] 
         public string Email { get; set; } = null!;
 
-        public int RoleId { get; set; }
+        [Required, MinLength(8), MaxLength(100)]
+        public string Password { get; set; } = null!;
 
     }
 }
