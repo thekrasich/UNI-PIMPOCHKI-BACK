@@ -1,6 +1,8 @@
+using AutoMapper;
+
 namespace Pimpochki.Application.Profiles;
 
-public class MappingProfile
+public class MappingProfile:Profile
 {
     
 }
