@@ -9,6 +9,7 @@ namespace Pimpochki.Application.Dtos
 {
     public class OrderDto
     {
+        public int Id { get; set; }
         public DateTime DateTime { get; set; }
         
         public int ProductId { get; set; }
