@@ -4,14 +4,12 @@ using Pimpochki.Infrastructure;
 var builder = WebApplication.CreateBuilder(args);
 
 {
-    builder.Services.AddApplication();
     builder.Services.AddInfrastructure(builder.Configuration);
-    builder.Services.AddApplication();
+    builder.Services.AddApplication(builder.Configuration);
     builder.Services.AddControllers();
     builder.Services.AddEndpointsApiExplorer();
     builder.Services.AddSwaggerGen();
 }
-
 var app = builder.Build();
 
 if (app.Environment.IsDevelopment())
@@ -26,3 +24,4 @@ if (app.Environment.IsDevelopment())
 }
 
 app.Run();
+
