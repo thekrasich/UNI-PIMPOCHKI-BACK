@@ -1,4 +1,5 @@
-﻿using Pimpochki.Application.Dtos.UserDtos;
+﻿using Pimpochki.Application.Dtos.AuthDtos;
+using Pimpochki.Application.Dtos.UserDtos;
 using Pimpochki.Application.Services.Auth.Abstractions;
 
 namespace Pimpochki.Application.Services.Auth.Implementations;
@@ -13,11 +14,13 @@ public class AuthService: IAuthService
     }
     public Task Register(CreateUserDto createUserDto)
     {
+        // Create user
         throw new NotImplementedException();
     }
 
-    public Task Login()
+    public Task Login(LoginDto loginDto)
     {
+        // check if user exist and if password correct ;
         throw new NotImplementedException();
     }
 }

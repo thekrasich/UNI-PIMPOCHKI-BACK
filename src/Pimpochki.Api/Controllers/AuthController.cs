@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
+using Pimpochki.Application.Dtos.AuthDtos;
 using Pimpochki.Application.Services.Auth.Abstractions;
 using Pimpochki.Application.Services.Auth.Implementations;
 
@@ -13,6 +14,12 @@ public class AuthController: ControllerBase
     public AuthController(IAuthService authService)
     {
         _authService = authService;
+    }
+
+    [HttpPost("login")]
+    public async Task Login([FromBody] LoginDto loginDto)
+    {
+        await _authService.Login(loginDto);
     }
     
 }
