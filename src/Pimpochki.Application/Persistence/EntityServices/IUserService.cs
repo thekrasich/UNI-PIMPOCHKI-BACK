@@ -1,6 +1,16 @@
-﻿namespace Pimpochki.Application.Persistence.EntityServices;
+﻿using Pimpochki.Application.Dtos.UserDtos;
+using Pimpochki.Domain.Entities;
 
-public class IUserService
+namespace Pimpochki.Application.Persistence.EntityServices;
+
+public interface IUserService
 {
+    Task<UserDto> GetUserByEmail(string email);
+
+    Task<UserDto> GetUserById(int id);
+    void UpdateUserName(string userName,User user); /////////////
+    void GrandRole(User user,Role role);
+    
+    
     
 }

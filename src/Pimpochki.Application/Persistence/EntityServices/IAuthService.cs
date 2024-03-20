@@ -1,6 +1,9 @@
-﻿namespace Pimpochki.Application.Persistence.EntityServices;
+﻿using Pimpochki.Application.Dtos.UserDtos;
 
-public class IAuthService
+namespace Pimpochki.Application.Persistence.EntityServices;
+
+public interface IAuthService
 {
-    
+    Task Register(CreateUserDto createUserDto);
+    Task Login();
 }

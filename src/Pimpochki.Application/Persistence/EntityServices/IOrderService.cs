@@ -1,6 +1,8 @@
-﻿namespace Pimpochki.Application.Persistence.EntityServices;
+﻿using Pimpochki.Application.Dtos.OrderDtos;
 
-public class IOrderService
+namespace Pimpochki.Application.Persistence.EntityServices;
+
+public interface IOrderService
 {
-    
+    Task<OrderDto> GetOrder(int id);
 }

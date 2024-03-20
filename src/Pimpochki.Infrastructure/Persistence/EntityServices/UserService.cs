@@ -1,6 +1,41 @@
-﻿namespace Pimpochki.Infrastructure.Persistence.EntityServices;
+﻿using AutoMapper;
+using Pimpochki.Application.Dtos.UserDtos;
+using Pimpochki.Application.Persistence.EntityRepositories;
+using Pimpochki.Application.Persistence.EntityServices;
+using Pimpochki.Domain.Entities;
 
-public class UserService
+namespace Pimpochki.Infrastructure.Persistence.EntityServices;
+
+public class UserService:IUserService
 {
-    
+    private readonly IUserRepository _userRepository;
+    private readonly IMapper _mapper;
+
+    public UserService(IUserRepository userRepository,IMapper mapper)
+    {
+        _userRepository = userRepository;
+        _mapper = mapper;
+    }
+    public async Task<UserDto> GetUserByEmail(string email)
+    {
+        var user = await _userRepository.GetAsync(obj =>obj.Email == email);
+        var userDto = _mapper.Map<User,UserDto>(user);
+
+        return userDto;
+    }
+
+    public Task<UserDto> GetUserById(int id)
+    {
+        throw new NotImplementedException();
+    }
+
+    public void UpdateUserName(string userName, User user)
+    {
+        throw new NotImplementedException();
+    }
+
+    public void GrandRole(User user, Role role)
+    {
+        throw new NotImplementedException();
+    }
 }

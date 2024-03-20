@@ -1,6 +1,8 @@
-﻿namespace Pimpochki.Application.Persistence.EntityServices;
+﻿using Pimpochki.Application.Dtos.ImageDtos;
 
-public class IImageService
+namespace Pimpochki.Application.Persistence.EntityServices;
+
+public interface IImageService
 {
-    
+    IEnumerable<ImageDto> GetAllImages(int id);
 }
