@@ -5,13 +5,11 @@ using System.Threading.Tasks;
 using System.ComponentModel.DataAnnotations;
 using System.Runtime.CompilerServices;
 
-namespace Pimpochki.Application.Dtos
+namespace Pimpochki.Application.Dtos.ImageDtos
 {
-    public class ImageDto
+    public class UpdateImageDto
     {
-        public int Id { get; set; }
+        [Required, Url] 
         public string Url { get; set; } = null!;
-        public int ProductId { get; set; }
     }
-
 }

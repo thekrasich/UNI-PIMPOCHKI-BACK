@@ -4,9 +4,10 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.ComponentModel.DataAnnotations;
 
-namespace Pimpochki.Application.Dtos
+namespace Pimpochki.Application.Dtos.UserDtos
 {
-    public class UpdateUserDto
+
+    public class CreateUserDto
     {
         [Required, MaxLength(100)] 
         public string UserName { get; set; } = null!;
@@ -16,5 +17,6 @@ namespace Pimpochki.Application.Dtos
 
         [Required, MinLength(8), MaxLength(100)]
         public string Password { get; set; } = null!;
+
     }
 }

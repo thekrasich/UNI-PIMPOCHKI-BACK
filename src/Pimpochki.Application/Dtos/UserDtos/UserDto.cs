@@ -4,19 +4,14 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.ComponentModel.DataAnnotations;
 
-namespace Pimpochki.Application.Dtos
+namespace Pimpochki.Application.Dtos.UserDtos
 {
-
-    public class CreateUserDto
+    public class UserDto
     {
-        [Required, MaxLength(100)] 
+        public int Id { get; set; }
         public string UserName { get; set; } = null!;
-
-        [Required, EmailAddress] 
         public string Email { get; set; } = null!;
-
-        [Required, MinLength(8), MaxLength(100)]
-        public string Password { get; set; } = null!;
+        public int RoleId { get; set; }
 
     }
 }

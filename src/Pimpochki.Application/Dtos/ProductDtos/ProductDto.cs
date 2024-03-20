@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.ComponentModel.DataAnnotations;
 
-namespace Pimpochki.Application.Dtos
+namespace Pimpochki.Application.Dtos.ProductDtos
 {
     public class ProductDto
     {

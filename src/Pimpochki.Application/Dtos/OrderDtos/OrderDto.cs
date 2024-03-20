@@ -5,15 +5,17 @@ using System.Threading.Tasks;
 using System.ComponentModel.DataAnnotations;
 using System.Runtime.CompilerServices;
 
-namespace Pimpochki.Application.Dtos
+namespace Pimpochki.Application.Dtos.OrderDtos
 {
-
-    public class CreateOrderDto
+    public class OrderDto
     {
+        public int Id { get; set; }
         public DateTime DateTime { get; set; }
+        
+        public int ProductId { get; set; }
 
-        [Required, Range(1, int.MaxValue)]
+        public int UserId { get; set; }
+
         public int Quantity { get; set; }
-
     }
 }
