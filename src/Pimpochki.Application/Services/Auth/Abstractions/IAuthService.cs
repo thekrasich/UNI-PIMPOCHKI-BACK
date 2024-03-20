@@ -1,6 +1,6 @@
 ﻿using Pimpochki.Application.Dtos.UserDtos;
 
-namespace Pimpochki.Application.Persistence.EntityServices;
+namespace Pimpochki.Application.Services.Auth.Abstractions;
 
 public interface IAuthService
 {
