@@ -35,12 +35,14 @@ public class UserService:IUserService
     public async Task UpdateUserName(string userName, User user)
     {
         user.UserName = userName;
+        // _userRepository.Update(user);
         await _userRepository.SaveChages();
     }
 
-    public void GrandRole(User user, Role role)
+    public async Task GrandRole(User user, Role role)
     {
-        user.Role.UserRole = role.UserRole;
-        _userRepository.SaveChages();
+        user.RoleId = role.Id;
+        // _userRepository.Update(user);
+        await _userRepository.SaveChages();
     }
 }

@@ -9,7 +9,7 @@ public interface IUserService
 
     Task<UserDto> GetUserById(int id);
     Task UpdateUserName(string userName,User user); 
-    void GrandRole(User user,Role role);
+    Task GrandRole(User user,Role role);
     
     
     
