@@ -19,14 +19,17 @@ public class UserService:IUserService
     public async Task<UserDto> GetUserByEmail(string email)
     {
         var user = await _userRepository.GetAsync(obj =>obj.Email == email);
-        var userDto = _mapper.Map<User,UserDto>(user);
+        var userDto = _mapper.Map<UserDto>(user);
 
         return userDto;
     }
 
-    public Task<UserDto> GetUserById(int id)
+    public async Task<UserDto> GetUserById(int id)
     {
-        throw new NotImplementedException();
+        var user = await _userRepository.GetAsync(obj =>obj.Id == id);
+        var userDto = _mapper.Map<UserDto>(user);
+
+        return userDto;
     }
 
     public void UpdateUserName(string userName, User user)

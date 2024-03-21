@@ -18,8 +18,13 @@ public class EntityRepository<TEntity>:IEntityRepository<TEntity> where TEntity:
         {
             _dbSet.Remove(entity);
         }
-        
-        
+
+        public async Task SaveChages()
+        {
+            await _context.SaveChangesAsync();
+        }
+
+
         public virtual IEnumerable<TEntity> GetAll(Expression<Func<TEntity, bool>>? filter = null)
         {
             IQueryable<TEntity> query = _dbSet;

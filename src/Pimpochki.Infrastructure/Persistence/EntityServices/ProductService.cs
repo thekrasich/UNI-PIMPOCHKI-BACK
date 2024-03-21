@@ -36,6 +36,7 @@ public class ProductService:IProductService
     public void DeleteProduct(Product product)
     {
         _productRepository.Delete(product);
+        _productRepository.SaveChages();
     }
 
     public Task<ProductDto> BuyProduct(int quantity,Product product)
@@ -48,12 +49,14 @@ public class ProductService:IProductService
     {
         var product = _mapper.Map<Product>(productDto);
         await _productRepository.InsertAsync(product);
+        await _productRepository.SaveChages();
     }
 
     public void UpdateProduct(UpdateProductDto productDto)
     {
         var productDtoToUpdate = _mapper.Map<Product>(productDto);
          _productRepository.Update(productDtoToUpdate);
+         _productRepository.SaveChages();
     }
 
     public IEnumerable<ImageDto> GetAllImages(int id)

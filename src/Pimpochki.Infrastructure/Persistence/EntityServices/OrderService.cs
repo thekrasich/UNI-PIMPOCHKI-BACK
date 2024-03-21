@@ -20,7 +20,7 @@ public class OrderService:IOrderService
     public async Task<OrderDto> GetOrder(int id)
     {
         var order = await _orderRepository.GetAsync(obj => obj.Id == id);
-        var orderDto = _mapper.Map<Order, OrderDto>(order);
+        var orderDto = _mapper.Map<OrderDto>(order);
         return orderDto;
     }
 }

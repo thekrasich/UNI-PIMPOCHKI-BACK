@@ -10,5 +10,6 @@ public interface IEntityRepository<TEntity> where TEntity:EntityBase
     Task InsertAsync(TEntity entity);
     void Update(TEntity entity);
     void Delete(TEntity entity);
+    Task SaveChages();
 
 }
