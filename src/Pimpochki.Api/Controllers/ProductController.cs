@@ -1,10 +1,10 @@
-using Microsoft.AspNetCore.Http;
+using System.Net;
 using Microsoft.AspNetCore.Mvc;
-using Pimpochki.Application.Dtos.ImageDtos;
 using Pimpochki.Application.Dtos.ProductDtos;
 using Pimpochki.Application.Persistence.EntityRepositories;
 using Pimpochki.Application.Persistence.EntityServices;
 using Pimpochki.Domain.Entities;
+using Swashbuckle.AspNetCore.Annotations;
 
 namespace Pimpochki.Api.Controllers
 {
@@ -22,6 +22,8 @@ namespace Pimpochki.Api.Controllers
         }
 
         [HttpGet]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [SwaggerOperation(Summary = "", Description = "", OperationId = "")]
         public IActionResult GetProducts()
         {
             var products = _productService.GetAllProducts();
