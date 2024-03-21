@@ -17,6 +17,7 @@ public class MappingProfile:Profile
         CreateMap<Image, ImageDto>();
         CreateMap<Order,OrderDto>();
         CreateMap<User,UserDto>();
-        
+        CreateMap<CreateUserDto, User>();
+
     }
 }
