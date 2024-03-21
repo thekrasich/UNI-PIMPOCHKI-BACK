@@ -39,10 +39,10 @@ public class ProductService:IProductService
         _productRepository.SaveChages();
     }
 
-    public Task<ProductDto> BuyProduct(int quantity,Product product)
+    public async Task BuyProduct(int quantity,Product product)
     {
-        ////////
-        throw new NotImplementedException();
+        product.Quantity -= quantity;
+        await _productRepository.SaveChages();
     }
 
     public async Task CreateProduct(CreateProductDto productDto)
@@ -65,8 +65,9 @@ public class ProductService:IProductService
         return images;
     }
 
-    public Task AddQuantity(int quantity,Product product)
+    public async Task AddQuantity(int quantity, Product product)
     {
-        throw new NotImplementedException();
+        product.Quantity += quantity;
+        await _productRepository.SaveChages();
     }
 }

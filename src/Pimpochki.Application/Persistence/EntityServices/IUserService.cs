@@ -8,7 +8,7 @@ public interface IUserService
     Task<UserDto> GetUserByEmail(string email);
 
     Task<UserDto> GetUserById(int id);
-    void UpdateUserName(string userName,User user); /////////////
+    Task UpdateUserName(string userName,User user); 
     void GrandRole(User user,Role role);
     
     

@@ -9,9 +9,9 @@ public interface IProductService
     IEnumerable<ProductDto> GetAllProducts();
     Task<ProductDto> GetProduct(int id);
     void DeleteProduct(Product product);
-    Task<ProductDto> BuyProduct(int quantity,Product product); //////////
+    Task BuyProduct(int quantity,Product product);
     Task CreateProduct(CreateProductDto productDto);
     void UpdateProduct(UpdateProductDto productDto);
-    IEnumerable<ImageDto> GetAllImages(int id);////////
+    IEnumerable<ImageDto> GetAllImages(int id);
     Task AddQuantity(int quantity,Product product);
 }

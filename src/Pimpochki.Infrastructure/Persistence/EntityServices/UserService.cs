@@ -32,13 +32,15 @@ public class UserService:IUserService
         return userDto;
     }
 
-    public void UpdateUserName(string userName, User user)
+    public async Task UpdateUserName(string userName, User user)
     {
-        throw new NotImplementedException();
+        user.UserName = userName;
+        await _userRepository.SaveChages();
     }
 
     public void GrandRole(User user, Role role)
     {
-        throw new NotImplementedException();
+        user.Role.UserRole = role.UserRole;
+        _userRepository.SaveChages();
     }
 }

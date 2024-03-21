@@ -8,7 +8,6 @@ namespace Pimpochki.Domain.Entities
 {
     public class User:EntityBase
     {
-
         public string UserName { get; set; } = null!;
 
         public string Email { get; set; } = null!;
@@ -20,6 +19,5 @@ namespace Pimpochki.Domain.Entities
         public Role Role { get; set; } = null!;
 
         public ICollection<Order> Orders { get; } = new List<Order>();
-        
     }
 }
