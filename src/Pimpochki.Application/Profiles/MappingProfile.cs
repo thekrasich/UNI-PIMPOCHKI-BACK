@@ -13,7 +13,7 @@ public class MappingProfile:Profile
     {
         CreateMap<Product,ProductDto>();
         CreateMap<CreateProductDto, Product>();
-        CreateMap<UpdateProductDto, Product>();
+        CreateMap<UpdateProductDto, Product>().ReverseMap();
         CreateMap<Image, ImageDto>();
         CreateMap<Order,OrderDto>();
         CreateMap<User,UserDto>();

@@ -33,10 +33,10 @@ public class ProductService:IProductService
         return productDto;
     }
 
-    public void DeleteProduct(Product product)
+    public async Task DeleteProduct(Product product)
     {
         _productRepository.Delete(product);
-        _productRepository.SaveChages();
+        await _productRepository.SaveChages();
     }
 
     public async Task BuyProduct(int quantity,Product product)
@@ -52,11 +52,21 @@ public class ProductService:IProductService
         await _productRepository.SaveChages();
     }
 
-    public void UpdateProduct(UpdateProductDto productDto)
+    public async Task UpdateProduct(UpdateProductDto productDto)
     {
+        // var existingProduct = await _productRepository.GetAsync(obj =>obj.Id ==id);
+        // if(existingProduct == null)
+        // {
+        //     throw new ArgumentException("Product not found");
+        // }
+        //
+        // var productToUpdate = _mapper.Map(productDto, existingProduct);
+        // _productRepository.Update(productToUpdate);
+        // await _productRepository.SaveChages();
+        
         var productDtoToUpdate = _mapper.Map<Product>(productDto);
          _productRepository.Update(productDtoToUpdate);
-         _productRepository.SaveChages();
+         await _productRepository.SaveChages();
     }
 
     public IEnumerable<ImageDto> GetAllImages(int id)
@@ -68,6 +78,7 @@ public class ProductService:IProductService
     public async Task AddQuantity(int quantity, Product product)
     {
         product.Quantity += quantity;
+        // _productRepository.Update(product);
         await _productRepository.SaveChages();
     }
 }

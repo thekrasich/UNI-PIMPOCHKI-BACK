@@ -3,9 +3,11 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Pimpochki.Application.Persistence.EntityRepositories;
 using Pimpochki.Application.Persistence.EntityRepositories.Common;
+using Pimpochki.Application.Persistence.EntityServices;
 using Pimpochki.Infrastructure.Persistence;
 using Pimpochki.Infrastructure.Persistence.EntityRepositories;
 using Pimpochki.Infrastructure.Persistence.EntityRepositories.Common;
+using Pimpochki.Infrastructure.Persistence.EntityServices;
 
 namespace Pimpochki.Infrastructure;
 
@@ -22,6 +24,10 @@ public static class DependencyInjection
         services.AddScoped<IProductRepository,ProductRepository>();
         services.AddScoped<IRoleRepository,RoleRepository>();
         services.AddScoped<IUserRepository,UserRepository>();
+        services.AddScoped<IUserService, UserService>();
+        services.AddScoped<IProductService, ProductService>();
+        services.AddScoped<IImageService,ImageService>();
+        services.AddScoped<IOrderService,OrderService>();
         return services;
     }
 }
