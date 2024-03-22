@@ -30,17 +30,17 @@ namespace Pimpochki.Api.Controllers
             return Ok(products);
         }
 
-        [HttpGet("{id}")]
-        public async Task<ProductDto> GetById(int id)
+        [HttpGet("{productId}")]
+        public async Task<ProductDto> GetById(int productId)
         {
-            var product = await _productService.GetProduct(id);
+            var product = await _productService.GetProduct(productId);
             return product;
         }
 
-        [HttpGet("{id}/images")]
-        public IActionResult GetImages([FromRoute] int id)
+        [HttpGet("{imageId}/images")]
+        public IActionResult GetImages([FromRoute] int imageId)
         {
-            var images = _productService.GetAllImages(id);
+            var images = _productService.GetAllImages(imageId);
             return Ok();
         }
 
@@ -50,8 +50,8 @@ namespace Pimpochki.Api.Controllers
             await _productService.CreateProduct(productDto);
         }
 
-        [HttpDelete("{id}")]
-        public  IActionResult DeleteProduct([FromRoute] int id)
+        [HttpDelete("{productId}")]
+        public  IActionResult DeleteProduct([FromRoute] int productId)
         {
             Product product = new()
             {
@@ -66,14 +66,14 @@ namespace Pimpochki.Api.Controllers
         }
 
         [HttpPatch("buy/{quantity}")]
-        public async Task BuyProduct([FromRoute]int quantity,int id)
+        public async Task BuyProduct([FromRoute]int quantity,int productId)
         {
-            var product = await _productRepository.GetAsync(obj => obj.Id == id);
+            var product = await _productRepository.GetAsync(obj => obj.Id == productId);
             await _productService.BuyProduct(quantity, product);
         }
 
-        [HttpPut("{id}")]
-        public IActionResult UpdateProducts([FromRoute] int id,[FromBody] UpdateProductDto updateProductDto)
+        [HttpPut("{productId}")]
+        public IActionResult UpdateProducts([FromRoute] int productId,[FromBody] UpdateProductDto updateProductDto)
         {
             // if (!ModelState.IsValid)
             // {
@@ -97,10 +97,10 @@ namespace Pimpochki.Api.Controllers
             return Ok();
         }
 
-        [HttpPatch("add-quantity/{quantity}/{id}")]
-        public async Task QuantityAdding([FromRoute]int quantity,[FromRoute] int id)
+        [HttpPatch("add-quantity/{quantity}/{productId}")]
+        public async Task QuantityAdding([FromRoute]int quantity,[FromRoute] int productId)
         {
-            var product = await _productRepository.GetAsync(obj => obj.Id == id);
+            var product = await _productRepository.GetAsync(obj => obj.Id == productId);
             await _productService.AddQuantity(quantity, product);
         }
 

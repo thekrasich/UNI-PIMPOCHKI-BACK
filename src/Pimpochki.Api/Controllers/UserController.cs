@@ -26,17 +26,17 @@ namespace Pimpochki.Api.Controllers
             return user;
         }
 
-        [HttpGet("{id}")]
-        public async Task<UserDto> GetUserById([FromRoute] int id)
+        [HttpGet("{userId}")]
+        public async Task<UserDto> GetUserById([FromRoute] int userId)
         {
-            var user = await _userService.GetUserById(id);
+            var user = await _userService.GetUserById(userId);
             return user;
         }
 
         [HttpPatch]
-        public async Task UpdateName(string userName,int id)
+        public async Task UpdateName(string userName,int userId)
         {
-            var user = await _userRepository.GetAsync(obj => obj.Id == id);
+            var user = await _userRepository.GetAsync(obj => obj.Id == userId);
             await _userService.UpdateUserName(userName, user);
         }
 

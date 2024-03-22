@@ -16,10 +16,10 @@ namespace Pimpochki.Api.Controllers
             _orderService = orderService;
         }
 
-        [HttpGet("{id}")]
-        public async Task<OrderDto> GetOrder([FromRoute] int id)
+        [HttpGet("{orderId}")]
+        public async Task<OrderDto> GetOrder([FromRoute] int orderId)
         {
-            var order =  await _orderService.GetOrder(id);
+            var order =  await _orderService.GetOrder(orderId);
             return order;
         }
     }

@@ -26,7 +26,6 @@ public class AuthService: IAuthService
         createUser.RoleId = 1;
         await _userRepository.InsertAsync(createUser);
         await _userRepository.SaveChages();
-
     }
 
     public async Task Login(LoginDto loginDto)
@@ -34,13 +33,13 @@ public class AuthService: IAuthService
         var user = await _userRepository.GetAsync(obj => obj.Email == loginDto.Email);
         if (user == null)
         {
-            throw new Exception(message:"user Not Found");
+            throw new Exception(message:"User Not Found");
         }
 
         var isVerified = _hashService.VerifyPassword(user.Password, loginDto.Password);
         if (!isVerified)
         {
-            throw new Exception(message:"not valid Password");
+            throw new Exception(message:"Not Valid Password");
         }
         
     }
