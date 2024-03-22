@@ -29,9 +29,19 @@ public class AuthService: IAuthService
 
     }
 
-    public Task Login(LoginDto loginDto)
+    public async Task Login(LoginDto loginDto)
     {
-        // check if user exist and if password correct ;
-        throw new NotImplementedException();
+        var user = await _userRepository.GetAsync(obj => obj.Email == loginDto.Email);
+        if (user == null)
+        {
+            throw new Exception(message:"user Not Found");
+        }
+
+        var isVerified = _hashService.VerifyPassword(user.Password, loginDto.Password);
+        if (!isVerified)
+        {
+            throw new Exception(message:"not valid Password");
+        }
+        
     }
 }
