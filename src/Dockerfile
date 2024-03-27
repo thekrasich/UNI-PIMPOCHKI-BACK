@@ -18,5 +18,6 @@ RUN dotnet publish "Pimpochki.Api/Pimpochki.Api.csproj" -c Release -o /app/publi
 
 FROM mcr.microsoft.com/dotnet/aspnet:latest AS final
 WORKDIR /app
+EXPOSE 8080
 COPY --from=publish /app/publish .
 ENTRYPOINT ["dotnet", "Pimpochki.Api.dll"]
