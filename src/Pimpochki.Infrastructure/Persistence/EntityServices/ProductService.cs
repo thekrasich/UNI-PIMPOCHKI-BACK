@@ -42,6 +42,7 @@ public class ProductService:IProductService
     public async Task BuyProduct(int quantity,Product product)
     {
         product.Quantity -= quantity;
+        _productRepository.Update(product);
         await _productRepository.SaveChages();
     }
 
@@ -54,16 +55,6 @@ public class ProductService:IProductService
 
     public async Task UpdateProduct(UpdateProductDto productDto)
     {
-        // var existingProduct = await _productRepository.GetAsync(obj =>obj.Id ==id);
-        // if(existingProduct == null)
-        // {
-        //     throw new ArgumentException("Product not found");
-        // }
-        //
-        // var productToUpdate = _mapper.Map(productDto, existingProduct);
-        // _productRepository.Update(productToUpdate);
-        // await _productRepository.SaveChanges();
-        
         var productDtoToUpdate = _mapper.Map<Product>(productDto);
          _productRepository.Update(productDtoToUpdate);
          await _productRepository.SaveChages();
@@ -78,7 +69,7 @@ public class ProductService:IProductService
     public async Task AddQuantity(int quantity, Product product)
     {
         product.Quantity += quantity;
-        // _productRepository.Update(product);
+         _productRepository.Update(product);
         await _productRepository.SaveChages();
     }
 }

@@ -33,7 +33,7 @@ namespace Pimpochki.Api.Controllers
 
         [TypeFilter(typeof(ProductExistFilterAttribute))]
         [HttpGet("{productId}")]
-        public async Task<ProductDto> GetById(int productId)
+        public async Task<ProductDto> GetById([FromRoute]int productId)
         {
             var product = await _productService.GetProduct(productId);
             return product;
@@ -48,67 +48,44 @@ namespace Pimpochki.Api.Controllers
         }
         
         [HttpPost]
+        [ModelStateFilter]
         public async Task CreateProduct([FromBody] CreateProductDto productDto)
         {
             await _productService.CreateProduct(productDto);
         }
 
         [HttpDelete("{productId}")]
-        public  IActionResult DeleteProduct([FromRoute] int productId)
+        [TypeFilter(typeof(ProductExistFilterAttribute))]
+        public async  Task<IActionResult> DeleteProduct([FromRoute] int productId)
         {
-            Product product = new()
-            {
-                Id = 1,
-                Name = "string",
-                Description = "string",
-                Price = 1,
-                Quantity = 214
-            };
-            _productService.DeleteProduct(product);
+            var product = await _productRepository.GetAsync(obj =>obj.Id == productId);
+            await _productService.DeleteProduct(product);
             return Ok();
         }
 
-        [HttpPatch("buy/{quantity}")]
+        [HttpPatch("buy/{quantity}")]//?
+        [TypeFilter(typeof(ProductExistFilterAttribute))]
         public async Task BuyProduct([FromRoute]int quantity,int productId)
         {
             var product = await _productRepository.GetAsync(obj => obj.Id == productId);
             await _productService.BuyProduct(quantity, product);
         }
-
+        
+        [ModelStateFilter]
         [HttpPut("{productId}")]
+        [TypeFilter(typeof(ProductExistFilterAttribute))]
         public IActionResult UpdateProducts([FromRoute] int productId,[FromBody] UpdateProductDto updateProductDto)
         {
-            // if (!ModelState.IsValid)
-            // {
-            //     return BadRequest(ModelState);
-            // }
-            //
-            // try
-            // {
-            //     await _productService.UpdateProduct(id, updateProductDto);
-            //     return Ok();
-            // }
-            // catch (ArgumentException ex)
-            // {
-            //     return NotFound(ex.Message);
-            // }
-            // catch (Exception ex)
-            // {
-            //     return StatusCode(500, "An error occurred while updating the product.");
-            // }
             _productService.UpdateProduct(updateProductDto);
             return Ok();
         }
-
+        
+        [TypeFilter(typeof(ProductExistFilterAttribute))]
         [HttpPatch("add-quantity/{quantity}/{productId}")]
         public async Task QuantityAdding([FromRoute]int quantity,[FromRoute] int productId)
         {
             var product = await _productRepository.GetAsync(obj => obj.Id == productId);
             await _productService.AddQuantity(quantity, product);
         }
-
-
-
-
     }
 }
