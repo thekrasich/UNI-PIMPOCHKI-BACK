@@ -1,5 +1,7 @@
 
 using Microsoft.AspNetCore.Mvc;
+using Pimpochki.Application.ActionFilters;
+using Pimpochki.Application.ActionFilters.ProductActionFilters;
 using Pimpochki.Application.Dtos.ProductDtos;
 using Pimpochki.Application.Persistence.EntityRepositories;
 using Pimpochki.Application.Persistence.EntityServices;
@@ -23,13 +25,13 @@ namespace Pimpochki.Api.Controllers
 
         [HttpGet]
         [ProducesResponseType(StatusCodes.Status200OK)]
-        [SwaggerOperation(Summary = "", Description = "", OperationId = "")]
         public IActionResult GetProducts()
         {
             var products = _productService.GetAllProducts();
             return Ok(products);
         }
 
+        [TypeFilter(typeof(ProductExistFilterAttribute))]
         [HttpGet("{productId}")]
         public async Task<ProductDto> GetById(int productId)
         {
@@ -37,13 +39,14 @@ namespace Pimpochki.Api.Controllers
             return product;
         }
 
-        [HttpGet("{imageId}/images")]
-        public IActionResult GetImages([FromRoute] int imageId)
+        [TypeFilter(typeof(ProductExistFilterAttribute))]
+        [HttpGet("{productId}/images")]
+        public IActionResult GetImages([FromRoute] int productId)
         {
-            var images = _productService.GetAllImages(imageId);
+            var images = _productService.GetAllImages(productId);
             return Ok();
         }
-
+        
         [HttpPost]
         public async Task CreateProduct([FromBody] CreateProductDto productDto)
         {

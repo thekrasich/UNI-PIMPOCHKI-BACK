@@ -62,7 +62,7 @@ public class ProductService:IProductService
         //
         // var productToUpdate = _mapper.Map(productDto, existingProduct);
         // _productRepository.Update(productToUpdate);
-        // await _productRepository.SaveChages();
+        // await _productRepository.SaveChanges();
         
         var productDtoToUpdate = _mapper.Map<Product>(productDto);
          _productRepository.Update(productDtoToUpdate);

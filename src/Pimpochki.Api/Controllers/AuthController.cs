@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
+using Pimpochki.Application.ActionFilters.AuthActionFilters;
 using Pimpochki.Application.Dtos.AuthDtos;
 using Pimpochki.Application.Dtos.UserDtos;
 using Pimpochki.Application.Services.Auth.Abstractions;
@@ -23,6 +24,7 @@ public class AuthController: ControllerBase
         await _authService.Login(loginDto);
     }
     
+    [TypeFilter(typeof(RegisterActionFilterAttribute))]
     [HttpPost("register")]
     public async Task Register([FromBody] CreateUserDto createUserDto)
     {

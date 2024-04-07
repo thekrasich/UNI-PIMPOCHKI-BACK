@@ -10,9 +10,10 @@ public class ImageService:IImageService
 {
     private readonly IImageRepository _imageRepository;
     private readonly IMapper _mapper;
-    public ImageService(IImageRepository imageRepository)
+    public ImageService(IImageRepository imageRepository, IMapper mapper)
     {
         _imageRepository = imageRepository;
+        _mapper = mapper;
     }
     public IEnumerable<ImageDto> GetAllImages(int id)
     {
