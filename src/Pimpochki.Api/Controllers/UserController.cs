@@ -1,5 +1,6 @@
 
 using Microsoft.AspNetCore.Mvc;
+using Pimpochki.Application.ActionFilters.UserActionFilters;
 using Pimpochki.Application.Dtos.UserDtos;
 using Pimpochki.Application.Persistence.EntityRepositories;
 using Pimpochki.Application.Persistence.EntityServices;
@@ -20,6 +21,7 @@ namespace Pimpochki.Api.Controllers
             _roleRepository = roleRepository;
         }
         [HttpGet("email/{email}")]
+        [TypeFilter(typeof(UserExistByEmailFilterAttribute))]
         public async Task<UserDto> GetUserByEmail([FromRoute]string email)
         {
             var user = await _userService.GetUserByEmail(email);
@@ -27,6 +29,7 @@ namespace Pimpochki.Api.Controllers
         }
 
         [HttpGet("{userId}")]
+        [TypeFilter(typeof(UserExistByIdFilterAttribute))]
         public async Task<UserDto> GetUserById([FromRoute] int userId)
         {
             var user = await _userService.GetUserById(userId);
@@ -40,7 +43,7 @@ namespace Pimpochki.Api.Controllers
             await _userService.UpdateUserName(userName, user);
         }
 
-        [HttpPatch("{userId}/grand/{roleId}")]
+        [HttpPatch("{userId}/grand/{roleId}")]//?
         public async Task RoleGrant([FromRoute]int userId,[FromRoute]int roleId)
         {
             var user = await _userRepository.GetAsync(obj => obj.Id == userId);
