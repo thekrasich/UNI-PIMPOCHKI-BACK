@@ -49,6 +49,7 @@ namespace Pimpochki.Api.Controllers
         
         [HttpPost]
         [ModelStateFilter]
+        [TypeFilter(typeof(ProductCreateFilterAttribute))]
         public async Task CreateProduct([FromBody] CreateProductDto productDto)
         {
             await _productService.CreateProduct(productDto);
