@@ -1,5 +1,6 @@
 
 using Microsoft.AspNetCore.Mvc;
+using Pimpochki.Application.ActionFilters.OrderActionFilters;
 using Pimpochki.Application.Dtos.OrderDtos;
 using Pimpochki.Application.Persistence.EntityServices;
 
@@ -17,6 +18,7 @@ namespace Pimpochki.Api.Controllers
         }
 
         [HttpGet("{orderId}")]
+        [TypeFilter(typeof(OrderExistFilterAttribute))]
         public async Task<OrderDto> GetOrder([FromRoute] int orderId)
         {
             var order =  await _orderService.GetOrder(orderId);
