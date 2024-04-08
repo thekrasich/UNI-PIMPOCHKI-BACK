@@ -7,7 +7,7 @@ using Pimpochki.Application.Persistence.EntityRepositories;
 
 namespace Pimpochki.Application.ActionFilters.ProductActionFilters;
 
-public class ProductCreateFilterAttribute(IProductRepository productRepository):ActionFilterAttribute
+public class ProductUpsertFilterAttribute(IProductRepository productRepository):ActionFilterAttribute
 {
     public override async Task OnActionExecutionAsync(ActionExecutingContext context, ActionExecutionDelegate next)
     {

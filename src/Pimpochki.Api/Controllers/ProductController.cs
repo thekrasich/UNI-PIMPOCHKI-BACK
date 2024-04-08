@@ -49,7 +49,7 @@ namespace Pimpochki.Api.Controllers
         
         [HttpPost]
         [ModelStateFilter]
-        [TypeFilter(typeof(ProductCreateFilterAttribute))]
+        [TypeFilter(typeof(ProductUpsertFilterAttribute))]
         public async Task CreateProduct([FromBody] CreateProductDto productDto)
         {
             await _productService.CreateProduct(productDto);
@@ -64,9 +64,9 @@ namespace Pimpochki.Api.Controllers
             return Ok();
         }
 
-        [HttpPatch("buy/{quantity}")]//?
+        [HttpPatch("buy/{quantity}/product/{productId}")]
         [TypeFilter(typeof(ProductExistFilterAttribute))]
-        public async Task BuyProduct([FromRoute]int quantity,int productId)
+        public async Task BuyProduct([FromRoute]int quantity,[FromRoute]int productId)
         {
             var product = await _productRepository.GetAsync(obj => obj.Id == productId);
             await _productService.BuyProduct(quantity, product);
@@ -75,6 +75,7 @@ namespace Pimpochki.Api.Controllers
         [ModelStateFilter]
         [HttpPut("{productId}")]
         [TypeFilter(typeof(ProductExistFilterAttribute))]
+        [TypeFilter(typeof(ProductUpsertFilterAttribute))]
         public IActionResult UpdateProducts([FromRoute] int productId,[FromBody] UpdateProductDto updateProductDto)
         {
             _productService.UpdateProduct(updateProductDto);
@@ -82,7 +83,7 @@ namespace Pimpochki.Api.Controllers
         }
         
         [TypeFilter(typeof(ProductExistFilterAttribute))]
-        [HttpPatch("add-quantity/{quantity}/{productId}")]
+        [HttpPatch("add-quantity/{quantity}/product/{productId}")]
         public async Task QuantityAdding([FromRoute]int quantity,[FromRoute] int productId)
         {
             var product = await _productRepository.GetAsync(obj => obj.Id == productId);

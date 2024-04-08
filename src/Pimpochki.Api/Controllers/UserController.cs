@@ -36,8 +36,9 @@ namespace Pimpochki.Api.Controllers
             return user;
         }
 
-        [HttpPatch]
-        public async Task UpdateName(string userName,int userId)
+        [HttpPatch("{userId}")]
+        [TypeFilter(typeof(UserExistByIdFilterAttribute))]
+        public async Task UpdateName(string userName,[FromRoute]int userId) //UserName?
         {
             var user = await _userRepository.GetAsync(obj => obj.Id == userId);
             await _userService.UpdateUserName(userName, user);
