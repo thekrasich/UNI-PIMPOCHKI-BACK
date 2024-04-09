@@ -1,14 +1,11 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+
 using Pimpochki.Domain.Entities.Common;
 
 namespace Pimpochki.Domain.Entities
 {
     public class Order:EntityBase
     {
-        public DateTime DateTime { get; set; }
+        public DateTime DateTime { get; set; } = DateTime.Now;
 
         public int Quantity { get; set; }
 

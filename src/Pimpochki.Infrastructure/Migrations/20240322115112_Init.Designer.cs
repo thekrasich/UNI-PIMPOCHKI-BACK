@@ -12,8 +12,8 @@ using Pimpochki.Infrastructure.Persistence;
 namespace Pimpochki.Infrastructure.Migrations
 {
     [DbContext(typeof(PimpochkiDbContext))]
-    [Migration("20240315145413_AddBasicEntities")]
-    partial class AddBasicEntities
+    [Migration("20240322115112_Init")]
+    partial class Init
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -118,6 +118,18 @@ namespace Pimpochki.Infrastructure.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Roles");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            UserRole = "Customer"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            UserRole = "Admin"
+                        });
                 });
 
             modelBuilder.Entity("Pimpochki.Domain.Entities.User", b =>
@@ -136,7 +148,7 @@ namespace Pimpochki.Infrastructure.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("RoleId")
+                    b.Property<int?>("RoleId")
                         .HasColumnType("int");
 
                     b.Property<string>("UserName")
@@ -184,9 +196,7 @@ namespace Pimpochki.Infrastructure.Migrations
                 {
                     b.HasOne("Pimpochki.Domain.Entities.Role", "Role")
                         .WithMany("Users")
-                        .HasForeignKey("RoleId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("RoleId");
 
                     b.Navigation("Role");
                 });

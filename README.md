@@ -1,36 +1,33 @@
-# Commit message conventions
+# UNI-PIMPOCHKI-BACK
 
-To maintain a clear and consistent project history we follow a simplified convention for our commit messages. This helps in quickly understanding the purpose of each change and assists in automated changelog generation.
+UNI-PIMPOCHKI-BACK is a .NET Web API project serving as the backend for a shop application specializing in trading terminals. It provides endpoints for managing products, customers, orders, and other shop-related functionalities.
 
-## Types of commits
+## Table of Contents
 
-### Feature
+- [About](#about)
+- [Features](#features)
+- [Installation](#installation)
+- [API Endpoints](#api-endpoints)
 
-- **Purpose:** Introduce new features or significant enhancements.
-- **Prefix:** `feature:`
-- **Example:** `feature: implement jwt authentication, feature: add product service`
+## About
 
-### Fix
+UNI-PIMPOCHKI-BACK is a RESTful API built using ASP.NET Web API framework. It's designed to be a backend service for the shop application, offering functionalities for managing various aspects of the shop, including products, customers, and orders related to trading terminals.
 
-- **Purpose:** Fix issues or bugs in the software.
-- **Prefix:** `fix:`
-- **Example:** `fix: login error via local strategy, fix: incorrect validations for products`
+## Features
+- Integration with databases for storing and retrieving shop-related data.
 
-### Update
+## Installation
 
-- **Purpose:** Implement minor changes or improvements that don't add new features or fix bugs. This includes small enhancements, dependency updates or other miscellaneous changes.
-- **Prefix:** `update:`
-- **Example:** `update: improve product validation logic, update: upgrade .NET 7 to .NET 8`
+1. Clone the UNI-PIMPOCHKI-BACK repository to your local machine.
+2. Navigate to the project directory.
+3. Open the solution in Visual Studio or your preferred IDE.
+4. Build the solution to restore dependencies and compile the project.
 
-### Refactoring
+## API Endpoints
 
-- **Purpose:** Reorganize or improve existing code without changing its external behavior. This is typically used for code clean-up simplifying structures or improving readability without affecting functionality.
-- **Prefix:** `refactoring:`
-- **Example:** `refactoring: remove unused usings, refactoring: rename ambiguous variables in auth service`
+The following are the main API endpoints provided by UNI-PIMPOCHKI-BACK:
 
-## Writing commit messages
-
-- Start with the appropriate prefix (`feature:`, `fix:`, `update:`, `refactoring:`) to clearly indicate the type of change.
-- Write the message in the imperative mood as if giving a command: "add", "fix", "improve", etc.
-- Keep the message concise but descriptive enough to understand the context and purpose of the change without needing to look at the code changes.
-- Write messages in lower case for consistency
+- `/api/Product`: Endpoint for managing terminals (GET, POST, PUT, DELETE).
+- `/api/User`: Endpoint for managing customers (GET, PATCH).
+- `/api/Order`: Endpoint for managing orders (GET).
+- `/api/auth`: Endpoint for user authentication
