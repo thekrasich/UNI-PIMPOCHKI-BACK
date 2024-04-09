@@ -10,8 +10,8 @@ public interface IProductService
     Task<ProductDto> GetProduct(int id);
     Task DeleteProduct(Product product);
     Task BuyProduct(int quantity,Product product);
-    Task CreateProduct(CreateProductDto productDto);
-    Task UpdateProduct(UpdateProductDto productDto);
+    Task CreateProduct(UpsertProductDto productDto);
+    Task UpdateProduct(UpsertProductDto productDto);
     IEnumerable<ImageDto> GetAllImages(int id);
     Task AddQuantity(int quantity,Product product);
 }

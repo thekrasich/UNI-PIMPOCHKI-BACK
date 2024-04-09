@@ -46,14 +46,14 @@ public class ProductService:IProductService
         await _productRepository.SaveChages();
     }
 
-    public async Task CreateProduct(CreateProductDto productDto)
+    public async Task CreateProduct(UpsertProductDto productDto)
     {
         var product = _mapper.Map<Product>(productDto);
         await _productRepository.InsertAsync(product);
         await _productRepository.SaveChages();
     }
 
-    public async Task UpdateProduct(UpdateProductDto productDto)
+    public async Task UpdateProduct(UpsertProductDto productDto)
     {
         var productDtoToUpdate = _mapper.Map<Product>(productDto);
          _productRepository.Update(productDtoToUpdate);

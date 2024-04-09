@@ -50,7 +50,7 @@ namespace Pimpochki.Api.Controllers
         [HttpPost]
         [ModelStateFilter]
         [TypeFilter(typeof(ProductUpsertFilterAttribute))]
-        public async Task CreateProduct([FromBody] CreateProductDto productDto)
+        public async Task CreateProduct([FromBody] UpsertProductDto productDto)
         {
             await _productService.CreateProduct(productDto);
         }
@@ -76,7 +76,7 @@ namespace Pimpochki.Api.Controllers
         [HttpPut("{productId}")]
         [TypeFilter(typeof(ProductExistFilterAttribute))]
         [TypeFilter(typeof(ProductUpsertFilterAttribute))]
-        public IActionResult UpdateProducts([FromRoute] int productId,[FromBody] UpdateProductDto updateProductDto)
+        public IActionResult UpdateProducts([FromRoute] int productId,[FromBody] UpsertProductDto updateProductDto)
         {
             _productService.UpdateProduct(updateProductDto);
             return Ok();

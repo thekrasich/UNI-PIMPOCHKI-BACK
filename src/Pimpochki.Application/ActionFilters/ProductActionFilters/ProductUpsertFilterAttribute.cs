@@ -11,9 +11,9 @@ public class ProductUpsertFilterAttribute(IProductRepository productRepository):
 {
     public override async Task OnActionExecutionAsync(ActionExecutingContext context, ActionExecutionDelegate next)
     {
-        CreateProductDto createProductDto = (CreateProductDto)context.ActionArguments["productDto"];
+        UpsertProductDto productDto = (UpsertProductDto)context.ActionArguments["productDto"];
 
-        if (await productRepository.GetAsync(product => product.Name == createProductDto.Name) is not null)
+        if (await productRepository.GetAsync(product => product.Name == productDto.Name) is not null)
         {
             context.ModelState.AddModelError("Product", "Name already exist.");
             ValidationProblemDetails details = new ValidationProblemDetails(context.ModelState)
