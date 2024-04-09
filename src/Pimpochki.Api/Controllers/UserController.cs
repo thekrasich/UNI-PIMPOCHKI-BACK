@@ -1,5 +1,6 @@
 
 using Microsoft.AspNetCore.Mvc;
+using Pimpochki.Application.ActionFilters.RoleActionFilters;
 using Pimpochki.Application.ActionFilters.UserActionFilters;
 using Pimpochki.Application.Dtos.UserDtos;
 using Pimpochki.Application.Persistence.EntityRepositories;
@@ -38,13 +39,15 @@ namespace Pimpochki.Api.Controllers
 
         [HttpPatch("{userId}")]
         [TypeFilter(typeof(UserExistByIdFilterAttribute))]
-        public async Task UpdateName(string userName,[FromRoute]int userId) //UserName?
+        public async Task UpdateName(string userName,[FromRoute]int userId)
         {
             var user = await _userRepository.GetAsync(obj => obj.Id == userId);
             await _userService.UpdateUserName(userName, user);
         }
 
-        [HttpPatch("{userId}/grand/{roleId}")]//?
+        [HttpPatch("{userId}/grand/{roleId}")]
+        [TypeFilter(typeof(UserExistByIdFilterAttribute))]
+        [TypeFilter(typeof(RoleExistFilterAttribute))]
         public async Task RoleGrant([FromRoute]int userId,[FromRoute]int roleId)
         {
             var user = await _userRepository.GetAsync(obj => obj.Id == userId);
